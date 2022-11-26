@@ -1,7 +1,30 @@
+//  HTML structure
+//
+//  body
+//    .wrapper
+//      .welcome
+//        .welcome-text
+//        .basket
+//      .books__wrapper
+//        .book-card
+//          .book-card__img
+//          .book__title
+//          .book__author
+//          button.book__show-more
+//          .book__price
+//          button button__add-to-bag
+//        .book-card
+//        ...........
+//    .popup__wrapper   //invisible, but shows up when "Show more" button is pushed
+//      .popup
+//      .popup__text
 
 
 
-async function getBooksInfo() {
+alert("Hello! I managed to make only layout generation with java script")
+
+
+async function getBooksInfo() {  // create books card and add book info inside
   const res = await fetch('./books.json');
   const data = await res.json();
 
@@ -22,7 +45,6 @@ async function getBooksInfo() {
 
     bookCard.append(bookCardImg, bookTitle, bookAuthor, bookShowMore, bookPrice, buttonAdd);
     }
-
 };
 
 getBooksInfo();
@@ -33,8 +55,6 @@ function createBlock(tag, clName) {
 
   this.createBlock = document.createElement(tag);
   this.createBlock.className = clName;
-
-  console.log(this.createBlock, this.className = clName);
 
   return this.createBlock;
 }
@@ -48,8 +68,6 @@ function createElem (tag, clName, content) {
   this.createElem.className = clName;
   this.createElem.innerHTML = content;
 
-  console.log(this.createElem, this.className = clName);
-
   return this.createElem;
 }
 
@@ -61,6 +79,7 @@ wrapper.prepend(welcome);
 
 const welcomeText = new createElem('p', 'welcome-text','Welcome to the Book Shop');
 welcome.prepend(welcomeText);
+
 
 const booksWrapper = new createBlock ('div', 'books__wrapper');
 welcome.after(booksWrapper);
@@ -82,6 +101,10 @@ popupClose.after(popupText);
 booksWrapper.onclick = function(event) {
   let target = event.target;
 
+  if (target.className == 'button__add-to-bag' ) {
+    addToBusket(target);
+  }
+
   if (target.className != 'book__show-more') return;
 
   let el = target.closest('.book__card').querySelector('.book__title').textContent;
@@ -90,7 +113,6 @@ booksWrapper.onclick = function(event) {
         popup.classList.add('active');
         popupWrapper.classList.add('active');
         popupText.textContent = getBookDescription(el);
-        console.log(popupText.textContent);
         return popupText.textContent;
 }
 
@@ -100,7 +122,6 @@ async function getBookDescription(el) {
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].title == el) {
-      console.log('data title', data[i].title, 'data description', data[i].description)
       popupText.textContent = data[i].description;
     }
   }
@@ -118,6 +139,54 @@ popupWrapper.addEventListener('click', (event) => { // закрыть окно �
     popup.classList.remove('active');
     popupWrapper.classList.remove('active');
 })
+
+
+//basket
+// //.welcome
+//  //.welcome-text
+//    .basket__wrapper;
+//      .basket
+//        span.basket__counter
+//      .basket__popup
+//        p.basket__header;
+//        .basket__book-card;
+//          .......
+//        a.basket__confirm;
+
+
+
+const basketWrapper = new createBlock('div', 'basket__wrapper');
+welcomeText.after(basketWrapper);
+
+const basket = new createBlock('div', 'basket');
+basketWrapper.prepend(basket);
+
+const basketCounter = new createElem('span', 'basket__counter', '0');
+basket.prepend(basketCounter);
+
+const basketPopup = new createBlock('div', 'basket__popup');
+basket.after(basketPopup);
+
+const basketHeader = new createElem('p', 'basket__header', 'Your shopping list')
+basketPopup.prepend(basketHeader);
+
+const basketConfirm = new createElem('a', 'basket__confirm', 'Confirm');
+basketConfirm.href = '#';
+basketPopup.append(basketConfirm);
+
+
+let booksSettoBuy = []; // books added to basket
+
+function addToBusket (target) {
+  console.log(target.className)
+}
+
+
+
+
+
+
+
 
 
 
