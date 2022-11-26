@@ -21,7 +21,7 @@
 
 
 
-alert("Hello! I managed to make only layout generation with java script")
+alert("Hello! I managed to make only layout generation with java script and popup appearance with a 'Show more' button");
 
 
 async function getBooksInfo() {  // create books card and add book info inside
