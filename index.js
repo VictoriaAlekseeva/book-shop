@@ -216,6 +216,8 @@ async function addToBusket (target) {
     }
   }
 
+  if (!basketConfirm.classList.contains('active')) basketConfirm.classList.add('active');
+
   totalItems.innerHTML = `${booksSettoBuy.length} items in your basket`;
 
 
@@ -235,22 +237,35 @@ function busketShowPopup() {
 basketWrapper.onclick = function(event) {
   let target = event.target;
 
+  console.log(event.target);
+
   if (target.classList.contains('basket') || target.classList.contains('basket__counter')) {
     busketShowPopup();
   }
 
+  if (target.classList.contains('basket__remove-button')) {
+    console.log (target);
+    removeFromBasket (target);
+  }
+
   // if (target.className != 'basket' || 'basket__counter') return;
 
-
-  if (target.className == 'basket__confirm') {
+  if (target.className == 'basket__confirm active') {
     window.location.href = './order.html';
   }
 }
 
-// function removeFromBasket (el) {
-//   //нажать кнопку - это дело евент листенера
-//   // найти заголовок в карточке нажатой карточки
-//   // найти элемент из booksSettoBuy с заданным заголовком
-//   // удалть элемент
+function removeFromBasket (target) {
 
-// }
+  booksSettoBuy = booksSettoBuy.filter(el => {
+    el.title == target.closest('.basket__card').querySelector('.basket__title').textContent;
+    console.log(el.title, 'deleted');
+  })
+  console.log(target.closest('.basket__card').querySelector('.basket__title').textContent, booksSettoBuy);
+
+  return booksSettoBuy;
+  }
+
+
+
+
