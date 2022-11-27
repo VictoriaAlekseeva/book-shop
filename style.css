@@ -159,14 +159,18 @@ body {
 .basket__popup {
   display: none;
   position: absolute;
-  width: 40%;
-  height: 100%;
+  width: 320px;
+
   border-radius: 10px;
   padding: 10px;
 
   background-color: gray;
   right: 20px;
   border: 2px solid black;
+}
+
+.basket__popup.active {
+  display: block;
 }
 
 .basket__header {
@@ -179,6 +183,8 @@ body {
   opacity: 0.6;
   border-radius: 10px;
   padding: 10px;
+
+  margin-bottom: 10px;
 }
 
 .basket__confirm {
@@ -191,4 +197,40 @@ body {
   text-decoration: none;
   background-color: lightseagreen;
   border-radius: 10px;
+}
+
+.basket__card {
+  width: 100%;
+  clear: both;
+
+  color: black;
+  font-size: 1.6rem;
+
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+.basket__book-img {
+  display: block;
+  width: 75px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.basket__remove-button {
+  display: block;
+  width: fit-content;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: lightseagreen;
+  margin: 5px;
+}
+
+.basket__title,
+.basket__author  {
+  margin-bottom: 5px;
 }

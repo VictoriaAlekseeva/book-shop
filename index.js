@@ -15,13 +15,13 @@
 //          button button__add-to-bag
 //        .book-card
 //        ...........
-//    .popup__wrapper   //invisible, but shows up when "Show more" button is pushed
+//    .popup__wrapper   //invisible, but shows up when "Show more" button was pushed
 //      .popup
 //      .popup__text
 
 
 
-alert("Hello! I managed to make only layout generation with java script and popup appearance with a 'Show more' button");
+//alert("Hello! I managed to make only layout generation with java script and popup appearance with a 'Show more' button");
 
 
 async function getBooksInfo() {  // create books card and add book info inside
@@ -100,8 +100,9 @@ popupClose.after(popupText);
 
 booksWrapper.onclick = function(event) {
   let target = event.target;
+  console.log(target.className)
 
-  if (target.className == 'button__add-to-bag' ) {
+  if (target.classList.contains('button__add-to-bag') ) {
     addToBusket(target);
   }
 
@@ -177,16 +178,59 @@ basketPopup.append(basketConfirm);
 
 let booksSettoBuy = []; // books added to basket
 
-function addToBusket (target) {
-  console.log(target.className)
+async function addToBusket (target) {
+
+  const res = await fetch('./books.json');
+  const data = await res.json();
+
+  let el = target.closest('.book__card').querySelector('.book__title').textContent;
+  console.log(el)
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].title == el) {
+      booksSettoBuy.push(data[i]);
+
+      const basketBookCard = new createBlock ('div', 'basket__card');
+      basketConfirm.before(basketBookCard);
+
+      const basketBookCardImg = new createElem ('img', 'basket__book-img');
+      basketBookCardImg.src = `${data[i].imageLink}`;
+      basketBookCardImg.alt= "book cover";
+
+      const basketBookTitle = new createElem ('p','basket__title', `${data[i].title}`);
+      const basketBookAuthor = new createElem ('p', 'basket__author', `${data[i].author}`);
+      const basketBookPrice = new createElem ('p', 'basket__price', `$ ${data[i].price}`);
+      const baskerRemoveItem = new createElem ('span', 'basket__remove-button', 'Remove')
+
+      basketBookCard.append(basketBookCardImg, basketBookTitle, basketBookAuthor, basketBookPrice, baskerRemoveItem);
+
+    }
+  }
+
+  basketCounter.innerHTML = booksSettoBuy.length
+  console.log(booksSettoBuy)
+  return booksSettoBuy, basketCounter;
 }
 
 
+console.log(booksSettoBuy);
+
+function busketShowPopup() {
+  basketPopup.classList.toggle('active');
+}
 
 
+basketWrapper.onclick = function(event) {
+  let target = event.target;
+
+  if (target.classList.contains('basket') || target.classList.contains('basket__counter')) {
+    busketShowPopup();
+  }
+
+  // if (target.className != 'basket' || 'basket__counter') return;
 
 
-
-
-
-
+  if (target.className == 'basket__confirm') {
+    window.location.href = './order.html';
+  }
+}
