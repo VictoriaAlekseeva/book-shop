@@ -176,7 +176,14 @@ basketConfirm.href = '#';
 basketPopup.append(basketConfirm);
 
 
+
 let booksSettoBuy = []; // books added to basket
+let total = 0; // total price after adding books in basket
+const totalItems = new createElem('p', 'basket__total-items', `0 items in your basket `);
+const totalPrice = new createElem('span', 'basket__total-price', ' $ 0')
+basketHeader.after(totalItems,totalPrice);
+// totalItems.append(totalPrice);
+
 
 async function addToBusket (target) {
 
@@ -204,12 +211,17 @@ async function addToBusket (target) {
 
       basketBookCard.append(basketBookCardImg, basketBookTitle, basketBookAuthor, basketBookPrice, baskerRemoveItem);
 
+      total += data[i].price;
+      totalPrice.textContent = `$ ${total}`;
     }
   }
 
+  totalItems.innerHTML = `${booksSettoBuy.length} items in your basket`;
+
+
   basketCounter.innerHTML = booksSettoBuy.length
-  console.log(booksSettoBuy)
-  return booksSettoBuy, basketCounter;
+  console.log(booksSettoBuy);
+  return (booksSettoBuy, basketCounter, total);
 }
 
 
@@ -234,3 +246,11 @@ basketWrapper.onclick = function(event) {
     window.location.href = './order.html';
   }
 }
+
+// function removeFromBasket (el) {
+//   //нажать кнопку - это дело евент листенера
+//   // найти заголовок в карточке нажатой карточки
+//   // найти элемент из booksSettoBuy с заданным заголовком
+//   // удалть элемент
+
+// }

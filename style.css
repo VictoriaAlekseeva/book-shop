@@ -202,6 +202,7 @@ body {
 .basket__card {
   width: 100%;
   clear: both;
+  overflow: auto;
 
   color: black;
   font-size: 1.6rem;
@@ -211,14 +212,15 @@ body {
   padding: 10px;
 
   margin-bottom: 10px;
-
 }
 
 .basket__book-img {
   display: block;
   width: 75px;
-  margin-right: 10px;
+  margin-left: 10px;
   margin-bottom: 10px;
+
+  float: right;
 }
 
 .basket__remove-button {
@@ -227,10 +229,22 @@ body {
   padding: 5px;
   border-radius: 10px;
   background-color: lightseagreen;
-  margin: 5px;
+  margin-top: 5px;
 }
 
 .basket__title,
 .basket__author  {
   margin-bottom: 5px;
+}
+
+.basket__total-items {
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.basket__total-price {
+  font-size: 2.4rem;
+  font-weight: 800;
 }
