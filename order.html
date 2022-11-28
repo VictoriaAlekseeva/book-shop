@@ -4,38 +4,47 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+  <title>Order</title>
 </head>
 <body>
+  <div class="wrapper">
+
+    <h1 class="order-header">Order confirmation</h1>
   <form action="#">
-    <label for="">Name</label>
-    <input type="text" name="" id="">
+    <label for="name" class="input-label">Name</label>
+    <input type="text" name="name" class="input" id="name">
 
-    <label for="">Surname</label>
-    <input type="text" name="" id="">
+    <label for="surname" class="input-label">Surname</label>
+    <input type="text" name="surname" class="input" id="surname">
 
-    <label for="">Delivery date</label>
-    <input type="date" name="" id="">
+    <label for="delivery-date" class="input-label">Delivery date</label>
+    <input type="date" name="delivery date" class="input" id="delivery-date">
 
-    <label for="">Street</label>
-    <input type="text">
+    <label for="street" class="input-label">Street</label>
+    <input type="text" name="street" class="input" id="street">
 
-    <label for="">House number</label>
-    <input type="text">
+    <label for="house-number" class="input-label">House number</label>
+    <input type="number" name="house-number" class="input" id="house-number">
 
-    <label for="">Flat number</label>
-    <input type="text">
+    <label for="flat-number" class="input-label">Flat number</label>
+    <input type="number" name="flat-number" class="input" id="flat-number">
 
-    <label for="">Payment type</label>
-    <input type="radio" name="Cash" id="">
-    <input type="radio" name="Card" id="">
+    <div class = "payment-type">Payment type
+      <input type="radio" name="payment-type" class="input-checkbox" id="cash" value="cash">
+      <label for="cash" class="input-label">Cash</label>
+      <input type="radio" name="payment-type" class="input-checkbox" id="card" value="card" checked>
+      <label for="card" class="input-label">Card</label>
+    </div>
 
-    <label for="">Choose 2 gift</label>
-    <input type="checkbox" name="pack as a gift" id="">
-    <input type="checkbox" name="add postcard" id="">
-    <input type="checkbox" name="provide 2% discount to the next time" id="">
-    <input type="checkbox" name="branded pen or pencil" id="">
+    <label for="gift-option" class="input-label">Choose 2 gift</label>
+    <input type="checkbox" name="pack as a gift" class="input-checkbox" id="gift-option">
+    <input type="checkbox" name="add postcard" class="input-checkbox" id="gift-option">
+    <input type="checkbox" name="provide 2% discount to the next time" class="input-checkbox" id="gift-option">
+    <input type="checkbox" name="branded pen or pencil" class="input-checkbox" id="gift-option">
 
+    <input type="button" value="complete" class="button-complete">
   </form>
+  </div>
 </body>
 </html>

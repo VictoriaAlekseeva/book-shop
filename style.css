@@ -252,3 +252,44 @@ body {
   font-size: 2.4rem;
   font-weight: 800;
 }
+
+.input {
+  display: block;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 300px;
+  padding: 5px;
+}
+
+
+.payment-type {
+  display: flex;
+}
+
+.input-label, .payment-type {
+  font-size: 2rem;
+  line-height: 2.4rem;
+}
+
+.payment-type {
+  margin-bottom: 10px;
+}
+
+.input-checkbox {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.order-header {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.button-complete {
+  padding: 5px;
+  border-radius: 10px;
+
+}
